@@ -33,8 +33,11 @@ if ingredients_list:
     for fruit_chosen in ingredients_list:
         ingredients_string += fruit_chosen + ' '
         
-        # API Call innerhalb der Iteration
-        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+        # Integration des dynamischen Subheaders
+        st.subheader(fruit_chosen + ' Nutrition Information')
+        
+        # Dynamisierung des API-Requests
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + fruit_chosen)
         sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
     # SQL Insert Statement Generation
